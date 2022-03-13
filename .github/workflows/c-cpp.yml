@@ -1,0 +1,25 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: run cmake
+        run: |
+          cd $GITHUB_WORKSPACE 
+          cmake .
+          cmake --build .
+      - name: run tests
+        run: |
+          cd $GITHUB_WORKSPACE
+          ./test_suite
