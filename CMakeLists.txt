@@ -15,10 +15,13 @@ set(Warnings, $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CX
         $<$<CXX_COMPILER_ID:MSVC>:
         /W4>)
 
-add_executable(test_suite tests/testsmain.cpp)
+file(GLOB_RECURSE TESTS RELATIVE ${CMAKE_SOURCE_DIR} "tests/*.cpp")
+
+add_executable(test_suite ${TESTS})
 
 target_compile_options(test_suite PRIVATE ${Warnings})
 target_link_libraries(test_suite PRIVATE Catch2::Catch2)
+set(CMAKE_CXX_USE_RESPONSE_FILE_FOR_INCLUDES Off)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

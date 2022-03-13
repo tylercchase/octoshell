@@ -26,6 +26,7 @@
             },
             "includePath": [
                 "${default}",
+                "${workspaceFolder}/build/_deps/catch2-src/single_include/catch2/",
                 "${workspaceFolder}/build/_deps/catch2-src/single_include"
             ]
         }

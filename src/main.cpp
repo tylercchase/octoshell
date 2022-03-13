@@ -7,15 +7,14 @@
 // Final Project: Octoshell
 
 #include <cassert>
+#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <utility>
-#include <cstdlib>
 
 // userPause
 // Wait for user to press ENTER: read all chars through first newline.
-void userPause()
-{
+void userPause() {
     std::cout.flush();
     while (std::cin.get() != '\n') ;
 }
