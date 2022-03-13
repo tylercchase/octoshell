@@ -1,0 +1,26 @@
+cmake_minimum_required(VERSION 3.0.0)
+project(octoshell)
+
+Include(FetchContent)
+FetchContent_Declare(
+        Catch2
+        GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+        GIT_TAG v2.x)
+FetchContent_MakeAvailable(Catch2)
+
+set(CMAKE_CXX_STANDARD 20)
+
+set(Warnings, $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+        -Wall -Wextra -Wpedantic -Weverything>
+        $<$<CXX_COMPILER_ID:MSVC>:
+        /W4>)
+
+add_executable(tests tests/testsmain.cpp)
+
+target_compile_options(tests PRIVATE ${Warnings})
+target_link_libraries(tests PRIVATE Catch2::Catch2)
+
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+include(CPack)
