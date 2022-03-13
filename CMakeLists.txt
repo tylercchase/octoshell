@@ -17,8 +17,8 @@ set(Warnings, $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CX
 
 add_executable(test_suite tests/testsmain.cpp)
 
-target_compile_options(tests PRIVATE ${Warnings})
-target_link_libraries(tests PRIVATE Catch2::Catch2)
+target_compile_options(test_suite PRIVATE ${Warnings})
+target_link_libraries(test_suite PRIVATE Catch2::Catch2)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
