@@ -2,10 +2,36 @@
 #include "../src/parser.hpp"
 
 TEST_CASE( "Parser Test", "[parser]" ) {
-    SECTION("Single command sequence") {
+    SECTION("Single command") {
         std::string input("ls");
         std::vector<Command> commands = parse(input);
         REQUIRE(commands.size() == 1);
         REQUIRE(commands[0].get_command() == "ls");
+    }
+    SECTION("Single command with flags") {
+        std::string input("ls -lh");
+        std::vector<Command> commands = parse(input);
+        REQUIRE(commands.size() == 1);
+        REQUIRE(commands[0].get_command() == "ls");
+        REQUIRE(commands[0].get_flags() == std::vector<std::string>{"l", "h"});
+    }
+    SECTION("Single command with arguments") {
+        std::string input("ls /home/");
+        std::vector<Command> commands = parse(input);
+        REQUIRE(commands.size() == 1);
+        REQUIRE(commands[0].get_command() == "ls");
+        REQUIRE(commands[0].get_arguments() == std::vector<std::string>{"/home/"});
+    }
+}
+
+TEST_CASE( "Parser Test", "[parser]" ) {
+    SECTION("Multiple commands") {
+        std::string input("ls -lh && echo 'hello world'");
+        std::vector<Command> commands = parse(input);
+        REQUIRE(commands.size() == 2);
+        REQUIRE(commands[0].get_command() == "ls");
+        REQUIRE(commands[0].get_flags() == std::vector<std::string>{"l", "h"});
+        REQUIRE(commands[1].get_command() == "echo");
+        REQUIRE(commands[1].get_arguments() == std::vector<std::string>{"'hello world'"});
     }
 }

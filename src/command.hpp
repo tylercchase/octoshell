@@ -9,8 +9,8 @@
 
 class Command {
     public:
-      Command(std::string, std::vector<std::string>,
-              std::vector<std::string>);
+      Command(std::string, std::vector<std::string> = {},
+              std::vector<std::string> = {});
       std::string get_command();
       std::vector<std::string> get_arguments();
       std::vector<std::string> get_flags();
