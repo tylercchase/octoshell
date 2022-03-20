@@ -14,16 +14,16 @@
 
 // userPause
 // Wait for user to press ENTER: read all chars through first newline.
-void userPause() {
-    std::cout.flush();
-    while (std::cin.get() != '\n') ;
-}
+// void userPause() {
+//     std::cout.flush();
+//     while (std::cin.get() != '\n') ;
+// }
 
-// Main program
-int main() {
-    std::cout << "Hello, world." << std::endl;
+// // Main program
+// int main() {
+//     std::cout << "Hello, world." << std::endl;
 
-    // Wait for user
-    std::cout << "Press ENTER to quit ";
-    userPause();
-}
+//     // Wait for user
+//     std::cout << "Press ENTER to quit ";
+//     userPause();
+// }
