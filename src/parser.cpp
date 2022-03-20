@@ -1,10 +1,12 @@
 // parser.cpp
 
 #include <sstream>
+#include <algorithm>
+
 #include "parser.hpp"
 
 // 1. Individual Command Sequences: split on semi-colons.
-// 2. Concurrently: split on ampersand (& connecter).
+// 2. Concurrently: split on ampersand (& = connecter).
 // 3. Pieces of Commands: split on spaces.
 
 // TODO:
@@ -18,18 +20,22 @@ std::vector<Command> parse(std::string input) {
     std::vector<Command> commands;
     while (std::getline(ss, line, ';')) {
         std::string command;
-        std::stringstream ss2(input);
+        std::stringstream ss2(line);
         std::string line2;
         std::vector<std::string> output;
         std::vector<std::string> args;
-        while(std::getline(ss2, line2, ' ')) {
-            output.push_back(line2);
+
+        
+
+        while (std::getline(ss2, line2, ' ')) {
+            if (line2.length() > 0) {
+                output.push_back(line2);
+            }
         }
+
         command = output[0];
         output.erase(output.begin());
-        // find the command
 
-        // find the flags
         std::vector<std::string> flags;
 
         for(std::string x : output) {
@@ -43,9 +49,10 @@ std::vector<Command> parse(std::string input) {
                 args.push_back(x);
             }
         }
-
         commands.push_back(Command(command, args, flags));
     }
+
+    // FIXME: Strip space(s) after the semicolon.
     
     return commands;
 }
