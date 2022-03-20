@@ -6,7 +6,7 @@
 #include "parser.hpp"
 
 // 1. Individual Command Sequences: split on semi-colons.
-// 2. Concurrently: split on ampersand (& = connecter).
+// 2. Concurrently: split on ampersand (& -> connecter).
 // 3. Pieces of Commands: split on spaces.
 
 // TODO:
@@ -25,8 +25,7 @@ std::vector<Command> parse(std::string input) {
         std::vector<std::string> output;
         std::vector<std::string> args;
 
-        
-
+        // Remove leading and trailing whitespace.
         while (std::getline(ss2, line2, ' ')) {
             if (line2.length() > 0) {
                 output.push_back(line2);
@@ -42,7 +41,7 @@ std::vector<Command> parse(std::string input) {
             if(x.find("-") != std::string::npos) {
                 for(char y : x) {
                     if(y != '-') {
-                        flags.push_back(std::string(1,y));
+                      flags.push_back(std::string(1, y));
                     }
                 }
             } else {
