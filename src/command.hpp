@@ -9,11 +9,11 @@
 
 class Command {
 public:
-  Command(std::string, std::vector<std::string> = {},
+  explicit Command(std::string, std::vector<std::string> = {},
           std::vector<std::string> = {});
-  const std::string get_command();
-  const std::vector<std::string> get_arguments();
-  const std::vector<std::string> get_flags();
+  std::string get_command();
+  std::vector<std::string> get_arguments();
+  std::vector<std::string> get_flags();
 
 private:
   std::string command;

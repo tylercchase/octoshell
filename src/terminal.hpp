@@ -19,9 +19,9 @@ class Terminal {
 public:
   Terminal();
 
-  std::string execute(Command &command);
+  static std::string execute(Command &command);
 
-  // ? Link to functions (internal vs. external).
+  //? Link to function (internal vs. external).
   std::vector<std::string> commands = {"exit", "print", "help"};
   std::vector<std::string> flags = {"--help", "--version"};
 
