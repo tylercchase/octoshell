@@ -21,7 +21,7 @@ set(Warnings, $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CX
 file(GLOB_RECURSE TESTS RELATIVE ${CMAKE_SOURCE_DIR} "tests/*.cpp")
 file(GLOB_RECURSE SRC RELATIVE ${CMAKE_SOURCE_DIR} "src/*.cpp")
 
-add_executable(test_suite ${TESTS} ${SRC})
+add_executable(test_suite ${TESTS} src/command.cpp src/parser.cpp src/terminal.cpp)
 add_executable(terminal ${SRC})
 target_compile_options(test_suite PRIVATE ${Warnings})
 target_link_libraries(test_suite PRIVATE Catch2::Catch2)
