@@ -18,11 +18,8 @@ set(Warnings, $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CX
         $<$<CXX_COMPILER_ID:MSVC>:
         /W4>)
 
-file(GLOB_RECURSE TESTS RELATIVE ${CMAKE_SOURCE_DIR} "tests/*.cpp")
-file(GLOB_RECURSE SRC RELATIVE ${CMAKE_SOURCE_DIR} "src/*.cpp")
-
-add_executable(test_suite ${TESTS} src/command.cpp src/parser.cpp src/terminal.cpp)
-add_executable(terminal ${SRC})
+add_executable(test_suite tests/tests_main.cpp tests/terminal_test.cpp tests/parser_test.cpp src/command.cpp src/parser.cpp src/terminal.cpp)
+add_executable(terminal src/command.cpp src/parser.cpp src/terminal.cpp src/main.cpp)
 target_compile_options(test_suite PRIVATE ${Warnings})
 target_link_libraries(test_suite PRIVATE Catch2::Catch2)
 set(CMAKE_CXX_USE_RESPONSE_FILE_FOR_INCLUDES Off)

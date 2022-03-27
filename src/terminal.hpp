@@ -1,5 +1,6 @@
 // terminal.hpp
 
+#include "command.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -15,7 +16,21 @@
 // 4. Print output.
 // 5. Repeat.
 class Terminal {
-  // TODO (Tyler): Loop Management (Similar to games in C++).
+public:
+  Terminal();
+
+  std::string execute(Command &command);
+
+  // ? Link to functions (internal vs. external).
+  std::vector<std::string> commands = {"exit", "print", "help"};
+  std::vector<std::string> flags = {"--help", "--version"};
+
+  // Table of Internal Commands:
+  // (SWITCH --> exit, print, or help).
+  // search path for executables not built-in.
+private:
 };
+
+// TODO: Loop Management (Similar to games in C++).
 
 #endif
