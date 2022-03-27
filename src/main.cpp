@@ -12,18 +12,18 @@
 #include <string>
 #include <utility>
 
-// userPause
-// Wait for user to press ENTER: read all chars through first newline.
-// void userPause() {
-//     std::cout.flush();
-//     while (std::cin.get() != '\n') ;
-// }
+void octoASCII() {
+  std::cout
+      << "\n\n                    .---.         ,,\n            ,,        /    "
+         " \       ;,,'\n        ;, ;      (  o  o )      ; ;\n            "
+         ";,';,,,  \  \/ /      ,; ;\n        ,,,  ;,,,,;;,`   '-,;'''',,,'\n  "
+         "      ;,, ;,, ,,,,   ,;  ,,,'';;,,;''';\n            ;,,,;    ~~'  "
+         "'';,,''',,;''''  \n                            '''\n"
+      << std::endl;
+}
 
-// // Main program
-// int main() {
-//     std::cout << "Hello, world." << std::endl;
-
-//     // Wait for user
-//     std::cout << "Press ENTER to quit ";
-//     userPause();
-// }
+// Main program
+int main() {
+  octoASCII();
+  std::cout << "----- Welcome to Octoshell! 🐙🐚 -----" << std::endl;
+}

@@ -14,7 +14,7 @@
                 "FOO",
                 "BAR=100"
             ],
-            "compilerPath": "/usr/bin/clang++-10",
+            "compilerPath": "/usr/bin/gcc",
             "cStandard": "c11",
             "cppStandard": "c++20",
             "browse": {
@@ -28,7 +28,8 @@
                 "${default}",
                 "${workspaceFolder}/build/_deps/catch2-src/single_include/catch2/",
                 "${workspaceFolder}/build/_deps/catch2-src/single_include"
-            ]
+            ],
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
         }
     ],
     "version": 4

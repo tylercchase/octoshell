@@ -12,7 +12,7 @@
     - [ ] help: help information of your shell
  - [ ] Multiple commands
     - [ ] ampersand (&): multiple commands on one line
- - [ ] Input of lines of up to 100 characters
+ - [x] Input of lines of up to 100 characters
     - [ ] Words consist of the characters A–Z, a–z, 0–9, dash, dot, forward slash, and underscore.
  - [ ] System Calls
     - [ ] fork
