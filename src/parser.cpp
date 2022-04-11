@@ -34,15 +34,15 @@ std::vector<Command> parse(std::string input) {
         while (std::getline(ss2, line2, '&')) {
             std::stringstream ss3(line2);
             std::string line3;
-            std::vector<std::string> things;
+            std::vector<std::string> tokens;
             while (std::getline(ss3, line3, ' ')) {
                 if (line3.length() > 0) {
-                    things.push_back(line3);
+                    tokens.push_back(line3);
                 }
             }
-            sequences.push_back(things);
+            sequences.push_back(tokens);
         }
-        
+
         for(auto output : sequences) {
             command = output[0];
             output.erase(output.begin());
