@@ -10,4 +10,4 @@
 
 std::vector<Command> parse(std::string input);
 
-#endif  //#ifndef PARSER_H
+#endif //#ifndef PARSER_H

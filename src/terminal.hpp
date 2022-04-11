@@ -33,4 +33,4 @@ private:
 
 // TODO: Loop Management (Similar to games in C++).
 
-#endif
+#endif //#ifndef TERMINAL_H

@@ -21,4 +21,4 @@ private:
   std::vector<std::string> flags;
 };
 
-#endif
+#endif //#ifndef COMMAND_H

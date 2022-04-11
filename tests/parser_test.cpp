@@ -30,41 +30,35 @@ TEST_CASE( "Parser Test", "[parser]" ) {
         REQUIRE(commands[0].get_flags() == std::vector<std::string>{"l", "h"});
         REQUIRE(commands[0].get_arguments() == std::vector<std::string>{"/home/"});
     }
-    SECTION("Multiple commands with semicolon") {
-        std::string input("ls; pwd");
-        std::vector<Command> commands = parse(input);
-        REQUIRE(commands.size() == 2);
-        REQUIRE(commands[0].get_command() == "ls");
-        REQUIRE(commands[1].get_command() == "pwd");
-    }
+
 }
 TEST_CASE("Parser multiple command", "[!mayfail]") {
     SECTION("Multiple commands with ampersand") {
-        std::string input("ls -lh & echo 'hello world'");
+        std::string input("ls -lh & echo hello");
         std::vector<Command> commands = parse(input);
         REQUIRE(commands.size() == 2);
         REQUIRE(commands[0].get_command() == "ls");
         REQUIRE(commands[0].get_flags() == std::vector<std::string>{"l", "h"});
         REQUIRE(commands[1].get_command() == "echo");
-        REQUIRE(commands[1].get_arguments() == std::vector<std::string>{"'hello world'"});
+        REQUIRE(commands[1].get_arguments() == std::vector<std::string>{"hello"});
     }
     SECTION("Multiple commands with semicolon") {
-        std::string input("ls -lh; echo 'hello world'");
+        std::string input("ls -lh; echo hello");
         std::vector<Command> commands = parse(input);
         REQUIRE(commands.size() == 2);
         REQUIRE(commands[0].get_command() == "ls");
         REQUIRE(commands[0].get_flags() == std::vector<std::string>{"l", "h"});
         REQUIRE(commands[1].get_command() == "echo");
-        REQUIRE(commands[1].get_arguments() == std::vector<std::string>{"'hello world'"});
+        REQUIRE(commands[1].get_arguments() == std::vector<std::string>{"hello"});
     }
     SECTION("Multiple commands with ampersand and semicolon") {
-        std::string input("ls -lh & echo 'hello world'; pwd");
+        std::string input("ls -lh & echo hello; pwd");
         std::vector<Command> commands = parse(input);
         REQUIRE(commands.size() == 3);
         REQUIRE(commands[0].get_command() == "ls");
         REQUIRE(commands[0].get_flags() == std::vector<std::string>{"l", "h"});
         REQUIRE(commands[1].get_command() == "echo");
-        REQUIRE(commands[1].get_arguments() == std::vector<std::string>{"'hello world'"});
+        REQUIRE(commands[1].get_arguments() == std::vector<std::string>{"hello"});
         REQUIRE(commands[2].get_command() == "pwd");
     }
 }
