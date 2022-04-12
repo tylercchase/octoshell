@@ -4,10 +4,11 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <linux/limits.h>
+#include <sstream>
 
 Terminal::Terminal() {};
 
-void execute_internal(Command &command) {
+std::string execute_internal(Command &command) {
     // call execvp
     // char* a = "";
     // char* b[2];
@@ -23,13 +24,13 @@ void execute_internal(Command &command) {
     if (fp == NULL) {
       // TODO: Handle error conditions.
     }
-    std::vector<std::string> output;
+    std::ostringstream output;
     while (fgets(path, 4096, fp) != NULL) {
-      // printf("%s", path);
-      output.push_back(path);
+      output << path;
     }
-    
+
     status = pclose(fp);
+    return output.str();
 }
 
 std::string Terminal::execute(Command &command) {
@@ -40,8 +41,8 @@ std::string Terminal::execute(Command &command) {
   else if (command.get_command() == "print")
     return "print";
   else {
-    execute_internal(command);
-    return "";
+    auto output = execute_internal(command);
+    return output;
   }
 };
 
