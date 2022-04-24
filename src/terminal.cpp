@@ -1,7 +1,6 @@
 // terminal.cpp
 
 #include "terminal.hpp"
-#include <linux/limits.h>
 #include <numeric>
 #include <sstream>
 #include <stdio.h>
