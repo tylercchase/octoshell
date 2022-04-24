@@ -46,12 +46,19 @@ std::string execute_internal(Command &command) {
 }
 
 std::string Terminal::execute(Command &command) {
-  if (command.get_command() == "help")
+  if (command.get_command() == "help") {
     return "help";
-  else if (command.get_command() == "exit")
+  }
+  else if (command.get_command() == "exit") {
     return "exit";
-  else if (command.get_command() == "print")
+  }
+  else if (command.get_command() == "print") {
     return "print";
+  }
+  else if (command.get_command() == "cd") {
+    chdir(command.get_arguments()[0].c_str());
+    return "";
+  }
   else {
     auto output = execute_internal(command);
     return output;
