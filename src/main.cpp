@@ -6,11 +6,6 @@
 // For CS 321 Spring 2022
 // Final Project: Octoshell
 
-#include <cassert>
-#include <cstdlib>
-#include <iostream>
-#include <string>
-#include <utility>
 #include "terminal.hpp"
 
 void octoASCII() {
@@ -26,6 +21,6 @@ void octoASCII() {
 // Main program
 int main() {
   octoASCII();
-  Terminal terminal;
-  terminal.start();
+  [[maybe_unused]] Terminal terminal;
+  Terminal::start();
 }

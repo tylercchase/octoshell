@@ -3,47 +3,42 @@
 #include "terminal.hpp"
 #include <numeric>
 #include <sstream>
-#include <stdio.h>
+#include <cstdio>
 #include <unistd.h>
 
-Terminal::Terminal(){};
+Terminal::Terminal()= default;
 
-void Terminal::start() {
+[[noreturn]] void Terminal::start() {
   while (true) {
     std::cout << "🐙🐚 octoshell » ";
     std::string input;
     std::getline(std::cin, input);
     std::vector<Command> commands = parse(input);
     for (Command command : commands) {
-      if (command.semicolon_continuation) {
-        std::cout << execute(command) << std::endl;
-      } else {
-        std::cout << execute(command) << std::endl;
-      }
+      std::cout << execute(command) << std::endl;
     }
   }
 }
 
 std::string execute_internal(Command &command) {
   FILE *fp;
-  int status;
   char input[4096];
   char path[4096];
   std::string arguments;
-  for (std::string argument : command.get_arguments()) {
+  for (const std::string& argument : command.get_arguments()) {
     arguments += " " + argument;
   }
   sprintf(input, "%s %s", command.get_command().c_str(), arguments.c_str());
   fp = popen(input, "r");
-  if (fp == NULL) {
+  if (fp == nullptr) {
     return "(!) Failed to run command";
   }
   std::ostringstream output;
-  while (fgets(path, 4096, fp) != NULL) {
+  while (fgets(path, 4096, fp) != nullptr) {
     output << path;
   }
 
-  status = pclose(fp);
+  pclose(fp);
   return output.str();
 }
 
@@ -66,4 +61,4 @@ std::string Terminal::execute(Command &command) {
     auto output = execute_internal(command);
     return output;
   }
-};
+}

@@ -14,7 +14,7 @@ public:
   std::string get_command();
   std::vector<std::string> get_arguments();
   std::vector<std::string> get_flags();
-  bool semicolon_continuation;
+  [[maybe_unused]] bool semicolon_continuation;
 private:
   std::string command;
   std::vector<std::string> arguments;

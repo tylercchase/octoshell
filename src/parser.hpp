@@ -8,6 +8,6 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-std::vector<Command> parse(std::string input);
+std::vector<Command> parse(const std::string& input);
 
 #endif //#ifndef PARSER_H

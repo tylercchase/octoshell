@@ -5,13 +5,13 @@
 #include <regex>
 #include <sstream>
 
-std::vector<Command> parse(std::string input) {
+std::vector<Command> parse(const std::string& input) {
   std::stringstream ss(input);
   std::string line;
   std::vector<Command> commands;
 
   // A–Z, a–z, 0–9, dash, dot, forward slash, and underscore.
-  std::regex valid_command("^[A-Za-z0-9\\-\\.\\/\\_]+");
+  std::regex valid_command("[A-Za-z0-9-_/.]+");
 
   while (std::getline(ss, line, ';')) {
     std::string command;
@@ -46,20 +46,20 @@ std::vector<Command> parse(std::string input) {
       }
       std::vector<std::string> flags;
 
-      for (std::string x : output) {
-        if (x.find("-") != std::string::npos) {
+      for (const std::string& x : output) {
+        if (x.find('-') != std::string::npos) {
           for (char y : x) {
             if (y != '-') {
-              flags.push_back(std::string(1, y));
+              flags.emplace_back(1, y);
             }
           }
         } else {
           args.push_back(x);
         }
       }
-      commands.push_back(Command(command, args, flags));
+      commands.emplace_back(command, args, flags);
     }
-    if (commands.size() == 0) {
+    if (commands.empty()) {
       std::cout << "(!) No commands found." << std::endl;
     } else {
       Command latest = commands.back();
