@@ -31,7 +31,7 @@ TEST_CASE("Parser Test", "[parser]") {
     REQUIRE(commands[0].get_arguments() == std::vector<std::string>{"/home/"});
   }
 }
-TEST_CASE("Parser multiple command", "[!mayfail]") {
+TEST_CASE("Parser multiple command") {
   SECTION("Multiple commands with ampersand") {
     std::string input("ls -lh & echo hello");
     std::vector<Command> commands = parse(input);

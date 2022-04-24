@@ -11,8 +11,6 @@ Command::Command(std::string command, std::vector<std::string> args,
   this->semicolon_continuation = false;
 }
 
-// TODO: Wait for a command to finish... [sleep]
-
 std::string Command::get_command() { return this->command; }
 
 std::vector<std::string> Command::get_arguments() { return this->arguments; }

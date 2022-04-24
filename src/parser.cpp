@@ -5,19 +5,6 @@
 #include <regex>
 #include <sstream>
 
-// 1. Individual Command Sequences: split on semi-colons.
-// 2. Concurrently: split on ampersand (& -> connecter).
-// 3. Pieces of Commands: split on spaces.
-
-// TODO: (Command Continue Structure):
-// - Initialize the parser class.
-// - Format for the commands.
-// - Validation checking (regular expressions).
-// - Split the input into individual command sequences.
-//      - Split and wait on semicolon (;).
-//      - Split and go on ampersand (&).
-//      - Get the command [xyz] and arguments.
-
 std::vector<Command> parse(std::string input) {
   std::stringstream ss(input);
   std::string line;
@@ -54,7 +41,7 @@ std::vector<Command> parse(std::string input) {
       command = output[0];
       output.erase(output.begin());
       if (!std::regex_match(command, valid_command)) {
-        std::cout << "Invalid command: " << command << std::endl;
+        std::cout << "(!) Invalid command: " << command << std::endl;
         continue;
       }
       std::vector<std::string> flags;

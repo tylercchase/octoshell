@@ -39,6 +39,5 @@ TEST_CASE("External Commands", "[terminal]") {
   SECTION("ls") {
     auto c = Command("/bin/ls");
     auto output = t.execute(c);
-    // TODO: REQUIRE( output == "ls");
   }
 }
