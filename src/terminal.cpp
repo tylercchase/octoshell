@@ -2,6 +2,7 @@
 
 #include "terminal.hpp"
 #include <linux/limits.h>
+#include <numeric>
 #include <sstream>
 #include <stdio.h>
 #include <unistd.h>
@@ -15,7 +16,11 @@ void Terminal::start() {
     std::getline(std::cin, input);
     std::vector<Command> commands = parse(input);
     for (Command command : commands) {
-      std::cout << execute(command) << std::endl;
+      if (command.semicolon_continuation) {
+        std::cout << execute(command) << std::endl;
+      } else {
+        std::cout << execute(command) << std::endl;
+      }
     }
   }
 }
@@ -23,9 +28,14 @@ void Terminal::start() {
 std::string execute_internal(Command &command) {
   FILE *fp;
   int status;
+  char input[4096];
   char path[4096];
-
-  fp = popen(command.get_command().c_str(), "r");
+  std::string arguments;
+  for (std::string argument : command.get_arguments()) {
+    arguments += " " + argument;
+  }
+  sprintf(input, "%s %s", command.get_command().c_str(), arguments.c_str());
+  fp = popen(input, "r");
   if (fp == NULL) {
     return "(!) Failed to run command";
   }
