@@ -11,6 +11,7 @@
 #include <iostream>
 #include <string>
 #include <utility>
+#include "terminal.hpp"
 
 void octoASCII() {
   std::cout
@@ -25,5 +26,6 @@ void octoASCII() {
 // Main program
 int main() {
   octoASCII();
-  std::cout << "----- Welcome to Octoshell! 🐙🐚 -----" << std::endl;
+  Terminal terminal;
+  terminal.start();
 }

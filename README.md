@@ -3,8 +3,8 @@
 
 ## Requirements
  - [x] External commands
-    - [ ] ls
-    - [ ] emacs
+    - [x] ls
+    - [x] emacs
  - [x] Internal commands
     - [x] exit: terminate the shell
     - [ ] print: print out the current pid

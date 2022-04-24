@@ -8,6 +8,18 @@
 
 Terminal::Terminal() {};
 
+void Terminal::start() {
+  while(true) {
+    std::cout << "🐙🐚 octoshell » ";
+    std::string input;
+    std::getline(std::cin, input);
+    std::vector<Command> commands = parse(input);
+    for(Command command : commands) {
+      std::cout << execute(command) << std::endl;
+    }
+  }
+}
+
 std::string execute_internal(Command &command) {
     // call execvp
     // char* a = "";

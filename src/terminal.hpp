@@ -1,6 +1,7 @@
 // terminal.hpp
 
 #include "command.hpp"
+#include "parser.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -18,7 +19,7 @@
 class Terminal {
 public:
   Terminal();
-
+  void start();
   static std::string execute(Command &command);
 
   //? Link to function (internal vs. external).
