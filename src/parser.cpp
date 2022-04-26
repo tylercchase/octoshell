@@ -19,7 +19,6 @@ std::vector<Command> parse(const std::string& input) {
     std::stringstream ss2(line);
     std::string line2;
     std::vector<std::vector<std::string>> sequences;
-    std::vector<std::string> args;
 
     while (std::getline(ss2, line2, '&')) {
       if (line2.length() > 100) {
@@ -39,6 +38,7 @@ std::vector<Command> parse(const std::string& input) {
 
     for (auto output : sequences) {
       command = output[0];
+      std::vector<std::string> args;
       output.erase(output.begin());
       if (!std::regex_match(command, valid_command)) {
         std::cout << "(!) Invalid command: " << command << std::endl;
