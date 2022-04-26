@@ -5,17 +5,32 @@
 #include <sstream>
 #include <cstdio>
 #include <unistd.h>
-
+#include <sys/wait.h>
 Terminal::Terminal()= default;
 
 [[noreturn]] void Terminal::start() {
+  std::vector<pid_t> processes;
   while (true) {
     std::cout << "🐙🐚 octoshell » ";
     std::string input;
     std::getline(std::cin, input);
     std::vector<Command> commands = parse(input);
     for (Command command : commands) {
-      std::cout << execute(command) << std::endl;
+  
+      if(command.semicolon_continuation) {
+        std::cout << execute(command) << std::endl;
+      } else {
+        auto pid = fork();
+        if (pid == 0) {
+          std::cout << execute(command) << std::endl;
+          exit(0);
+        } else {
+          processes.push_back(pid);
+        }
+      }
+    }
+    for (auto pid : processes) {
+      waitpid(pid, nullptr, 0);
     }
   }
 }
