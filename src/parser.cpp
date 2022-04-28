@@ -50,22 +50,23 @@ std::vector<Command> parse(const std::string& input) {
         if (x.find('-') != std::string::npos) {
           for (char y : x) {
             if (y != '-') {
-              flags.emplace_back(1, y);
+              flags.push_back(std::string(1, y));
             }
           }
         } else {
           args.push_back(x);
         }
       }
-      commands.emplace_back(command, args, flags);
+      commands.push_back(Command(command, args, flags));
     }
     if (commands.empty()) {
       std::cout << "(!) No commands found." << std::endl;
     } else {
       Command latest = commands.back();
+      commands.pop_back();
       latest.semicolon_continuation = true;
+      commands.push_back(latest);
     }
   }
-
   return commands;
 }

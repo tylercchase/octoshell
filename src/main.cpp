@@ -21,6 +21,6 @@ void octoASCII() {
 // Main program
 int main() {
   octoASCII();
-  [[maybe_unused]] Terminal terminal;
-  Terminal::start();
+  Terminal terminal;
+  terminal.start();
 }

@@ -8,7 +8,7 @@
 #include <sys/wait.h>
 Terminal::Terminal()= default;
 
-[[noreturn]] void Terminal::start() {
+void Terminal::start() {
   std::vector<pid_t> processes;
   while (true) {
     std::cout << "🐙🐚 octoshell » ";
@@ -19,6 +19,7 @@ Terminal::Terminal()= default;
   
       if(command.semicolon_continuation) {
         std::cout << execute(command) << std::endl;
+        std::cout << "Doing stuff" << std::endl;
       } else {
         auto pid = fork();
         if (pid == 0) {
@@ -40,7 +41,7 @@ std::string execute_internal(Command &command) {
   char input[4096];
   char path[4096];
   std::string arguments;
-  for (const std::string& argument : command.get_arguments()) {
+  for (std::string argument : command.get_arguments()) {
     arguments += " " + argument;
   }
   sprintf(input, "%s %s", command.get_command().c_str(), arguments.c_str());
@@ -66,6 +67,7 @@ std::string Terminal::execute(Command &command) {
          << "cd - navigate to another directory";
     return help.str();
   } else if (command.get_command() == "exit") {
+    std::cout << "Exiting" << std::endl;
     exit(0);
   } else if (command.get_command() == "print") {
     return std::to_string(getpid());

@@ -12,7 +12,7 @@
 class Terminal {
 public:
   Terminal();
-  [[noreturn]] static void start();
+  void start();
   static std::string execute(Command &command);
 private:
 };
