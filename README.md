@@ -1,6 +1,7 @@
 # octoshell 🐙🐚
 - CS 321: Final Project (Spring 2022)
-
+## See it in action
+[![asciicast](https://asciinema.org/a/fFj4uxhDZroUGkrAL6bynU0Ms.svg)](https://asciinema.org/a/fFj4uxhDZroUGkrAL6bynU0Ms)
 ## Requirements
  - [x] External commands
     - [x] ls
