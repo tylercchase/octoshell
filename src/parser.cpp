@@ -42,8 +42,8 @@ std::vector<Command> parse(const std::string &input) {
       std::vector<std::string> args;
       output.erase(output.begin());
       if (!std::regex_match(command, valid_command)) {
-        std::cout << "(!) Invalid command: " << command << std::endl;
-        continue;
+        std::cout << "(!) Command contains invalid characters -- try again." << std::endl;
+        return {};
       }
       std::vector<std::string> flags;
 
@@ -61,7 +61,7 @@ std::vector<Command> parse(const std::string &input) {
       commands.push_back(Command(command, args, flags));
     }
     if (commands.empty()) {
-      std::cout << "(!) No commands found." << std::endl;
+      std::cout << "(!) No valid command found." << std::endl;
     } else {
       Command latest = commands.back();
       commands.pop_back();

@@ -46,7 +46,8 @@ std::string execute_internal(Command &command) {
   sprintf(input, "%s %s", command.get_command().c_str(), arguments.c_str());
   fp = popen(input, "r");
   if (fp == nullptr) {
-    return "(!) Failed to run command";
+    // return "(!) Failed to run command";
+    return "";
   }
   std::ostringstream output;
   while (fgets(path, 4096, fp) != nullptr) {
