@@ -1,5 +1,14 @@
 # octoshell 🐙🐚
 - CS 321: Final Project (Spring 2022)
+
+# Building
+```bash
+mkdir build
+cd build
+cmake ..
+make
+./terminal
+```
 ## See it in action
 [![asciicast](https://asciinema.org/a/fFj4uxhDZroUGkrAL6bynU0Ms.svg)](https://asciinema.org/a/fFj4uxhDZroUGkrAL6bynU0Ms)
 ## Requirements
