@@ -5,14 +5,19 @@
 #include <regex>
 #include <sstream>
 
-std::vector<Command> parse(const std::string& input) {
-  std::stringstream ss(input);
+std::vector<Command> parse(const std::string &input) {
+  std::stringstream ss;
   std::string line;
   std::vector<Command> commands;
 
   // A–Z, a–z, 0–9, dash, dot, forward slash, and underscore.
   std::regex valid_command("[A-Za-z0-9-_/.]+");
-
+  if (input.length() > 100) {
+    std::cout << "(!) Line too long -- truncated." << std::endl;
+    ss << input.substr(0, 100);
+  } else {
+    ss << input;
+  }
   while (std::getline(ss, line, ';')) {
     std::string command;
 
@@ -21,10 +26,6 @@ std::vector<Command> parse(const std::string& input) {
     std::vector<std::vector<std::string>> sequences;
 
     while (std::getline(ss2, line2, '&')) {
-      if (line2.length() > 100) {
-        line2 = line2.substr(0, 100);
-        std::cout << "(!) Line too long -- truncated." << std::endl;
-      }
       std::stringstream ss3(line2);
       std::string line3;
       std::vector<std::string> tokens;
@@ -46,7 +47,7 @@ std::vector<Command> parse(const std::string& input) {
       }
       std::vector<std::string> flags;
 
-      for (const std::string& x : output) {
+      for (const std::string &x : output) {
         if (x.find('-') != std::string::npos) {
           for (char y : x) {
             if (y != '-') {

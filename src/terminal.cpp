@@ -19,7 +19,6 @@ void Terminal::start() {
   
       if(command.semicolon_continuation) {
         std::cout << execute(command) << std::endl;
-        std::cout << "Doing stuff" << std::endl;
       } else {
         auto pid = fork();
         if (pid == 0) {
@@ -67,7 +66,6 @@ std::string Terminal::execute(Command &command) {
          << "cd - navigate to another directory";
     return help.str();
   } else if (command.get_command() == "exit") {
-    std::cout << "Exiting" << std::endl;
     exit(0);
   } else if (command.get_command() == "print") {
     return std::to_string(getpid());
